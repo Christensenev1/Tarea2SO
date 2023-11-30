@@ -1,0 +1,24 @@
+// ... (importar bibliotecas)
+
+// Definir función para procesamiento en paralelo
+void processImage(Mat& image, Mat& grayImage, int startRow, int endRow) {
+    // Algoritmo para convertir una parte de la imagen a escala de grises
+    // Utiliza una sección de la imagen desde startRow hasta endRow
+}
+
+int main(int argc, char *argv[]) {
+    // ... (validaciones y carga de imagen)
+
+    int numThreads = atoi(argv[3]);
+
+    // Dividir la imagen entre los hilos y procesar
+    // Cada hilo trabajará en una sección de la imagen
+
+    // Crear y lanzar hilos
+    // ...
+
+    // Esperar a que todos los hilos terminen
+    // ...
+
+    return 0;
+}
