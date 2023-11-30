@@ -1,0 +1,33 @@
+#include <iostream>
+#include <opencv2/opencv.hpp>
+
+using namespace cv;
+using namespace std;
+
+int main(int argc, char *argv[]) {
+    if (argc != 3) {
+        cout << "Uso: " << argv[0] << " <imagen_a_color> <imagen_escala_grises>" << endl;
+        return -1;
+    }
+
+    Mat image = imread(argv[1], IMREAD_COLOR);
+
+    if (image.empty()) {
+        cout << "No se pudo cargar la imagen." << endl;
+        return -1;
+    }
+
+    Mat grayImage(image.rows, image.cols, CV_8UC1);
+
+    // Convertir imagen a escala de grises usando método de luminosidad
+    for (int i = 0; i < image.rows; ++i) {
+        for (int j = 0; j < image.cols; ++j) {
+            Vec3b pixel = image.at<Vec3b>(i, j);
+            grayImage.at<uchar>(i, j) = 0.299 * pixel[2] + 0.587 * pixel[1] + 0.114 * pixel[0];
+        }
+    }
+
+    imwrite(argv[2], grayImage);
+
+    return 0;
+}
