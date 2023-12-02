@@ -1,24 +1,54 @@
-// ... (importar bibliotecas)
+#include <opencv2/opencv.hpp>
+#include <iostream>
+#include <thread>
+#include <vector>
 
-// Definir función para procesamiento en paralelo
-void processImage(Mat& image, Mat& grayImage, int startRow, int endRow) {
-    // Algoritmo para convertir una parte de la imagen a escala de grises
-    // Utiliza una sección de la imagen desde startRow hasta endRow
+// FunciÃ³n que realiza la conversiÃ³n de una parte de la imagen a escala de grises
+void convertToGray(const cv::Mat& img, cv::Mat& img_gray, int start_row, int end_row) {
+    for (int i = start_row; i < end_row; ++i) {
+        for (int j = 0; j < img.cols; ++j) {
+            cv::Vec3b pixel = img.at<cv::Vec3b>(i, j);
+            int gray_value = 0.2126 * pixel[2] + 0.7152 * pixel[1] + 0.0722 * pixel[0];
+            img_gray.at<uchar>(i, j) = gray_value;
+        }
+    }
 }
 
-int main(int argc, char *argv[]) {
-    // ... (validaciones y carga de imagen)
+int main() {
+    cv::Mat img = cv::imread("/home/manuel/Documentos/playa-tropical-del-paraÃ­so-con-la-palmera-41402415.jpg");
+    if (img.empty()) {
+        std::cout << "Error al cargar la imagen" << std::endl;
+        return -1;
+    }
 
-    int numThreads = atoi(argv[3]);
+    cv::Mat img_gray(img.rows, img.cols, CV_8UC1);
 
-    // Dividir la imagen entre los hilos y procesar
-    // Cada hilo trabajará en una sección de la imagen
+    // Definir la cantidad de hilos a utilizar (puedes cambiar este nÃºmero)
+    int num_threads = 4;
+    std::vector<std::thread> threads(num_threads);
 
-    // Crear y lanzar hilos
-    // ...
+    int rows_per_thread = img.rows / num_threads;
+    int extra_rows = img.rows % num_threads;
+    int start = 0;
+    int end = 0;
 
-    // Esperar a que todos los hilos terminen
-    // ...
+    // Crear y ejecutar hilos para procesar secciones de la imagen
+    for (int i = 0; i < num_threads; ++i) {
+        start = i * rows_per_thread;
+        end = (i + 1) * rows_per_thread;
+        if (i == num_threads - 1) {
+            end += extra_rows; // AÃ±adir filas adicionales al Ãºltimo hilo
+        }
+        threads[i] = std::thread(convertToGray, std::ref(img), std::ref(img_gray), start, end);
+    }
+
+    // Unir los hilos al programa principal
+    for (int i = 0; i < num_threads; ++i) {
+        threads[i].join();
+    }
+
+    cv::imwrite("/home/manuel/Documentos/imagen_gris_thread.jpg", img_gray);
+    std::cout << "Imagen en escala de grises usando std::thread guardada correctamente" << std::endl;
 
     return 0;
 }
