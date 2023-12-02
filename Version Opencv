@@ -1,0 +1,14 @@
+#include <opencv2/opencv.hpp>
+#include <iostream>
+
+int main() {
+    cv::Mat img = cv::imread("/home/manuel/Documentos/playa-tropical-del-paraÃ­so-con-la-palmera-41402415.jpg");
+    if(img.empty()) {
+        std::cout << "Error al cargar la imagen" << std::endl;
+        return -1;
+    }
+
+    cv::imshow("Imagen de prueba", img);
+    cv::waitKey(0);
+    return 0;
+}
