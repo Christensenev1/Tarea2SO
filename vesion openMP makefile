@@ -1,0 +1,15 @@
+CC = g++
+CFLAGS = -std=c++11 -Wall -fopenmp \
+         $(shell pkg-config --cflags opencv4)   # Bandera de compilación utilizando pkg-config
+LDFLAGS = $(shell pkg-config --libs opencv4)   # Bandera de enlace utilizando pkg-config
+
+SOURCE = gray_openmp.cpp
+TARGET = proceso_imagenes
+
+all: $(TARGET)
+
+$(TARGET): $(SOURCE)
+		$(CC) $(CFLAGS) -o $(TARGET) $(SOURCE) $(LDFLAGS)
+
+clean:
+		rm -f $(TARGET) *.jpg
