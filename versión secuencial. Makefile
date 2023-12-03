@@ -1,0 +1,17 @@
+CC = g++
+CFLAGS = -std=c++11 -Wall
+LDFLAGS = -lopencv_core -lopencv_imgcodecs -lopencv_imgproc -lopencv_highgui
+SOURCE = main.cpp
+SEQ_TARGET = secuencial
+PAR_TARGET = paralelo
+
+all: $(SEQ_TARGET) $(PAR_TARGET)
+
+$(SEQ_TARGET): $(SOURCE)
+	$(CC) $(CFLAGS) -o $(SEQ_TARGET) $(SOURCE) $(LDFLAGS)
+
+$(PAR_TARGET): $(SOURCE)
+	$(CC) $(CFLAGS) -o $(PAR_TARGET) $(SOURCE) $(LDFLAGS) -fopenmp
+
+clean:
+	rm -f $(SEQ_TARGET) $(PAR_TARGET) *.jpg
