@@ -1,0 +1,13 @@
+CC = g++
+CFLAGS = -std=c++11 -Wall
+LDFLAGS = -lopencv_core -lopencv_imgcodecs -lopencv_highgui
+SOURCE = main.cpp
+TARGET = show_image
+
+all: $(TARGET)
+
+$(TARGET): $(SOURCE)
+	$(CC) $(CFLAGS) -o $(TARGET) $(SOURCE) $(LDFLAGS)
+
+clean:
+	rm -f $(TARGET)
