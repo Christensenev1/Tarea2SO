@@ -8,5 +8,6 @@
 //con makefile 
 1# tiene que copiar y pegar el codigo "version secuencial makefile" 
 2#tendra que poner nano Makefile y pegar el contenido de "version secuencial makefile"
-3#para mostrar la imagen en paralelo ponga ./paralelo
-4# para mostrar la imagen en secuencial ./secuencial
+3# escriba make para compilar
+4#para mostrar la imagen en paralelo ponga ./paralelo
+5# para mostrar la imagen en secuencial ./secuencial
