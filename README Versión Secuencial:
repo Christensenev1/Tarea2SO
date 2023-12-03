@@ -1,5 +1,5 @@
 1# Abre una terminal en tu sistema operativo Linux.
-2# Ubícate en la carpeta donde se encuentra el archivo gray_sequential.cpp.
+2# Ubícate en la carpeta donde se encuentra el archivo gray_sequential.cpp.(en mi caso, en el caso de usted cree una carpeta nueva con el nombre que desee)
 3# Asegúrate de tener OpenCV instalado y configurado en tu entorno de desarrollo.
 4# Compila el código usando el compilador de C++ (g++) y asegúrate de enlazar las bibliotecas de OpenCV. Puedes hacerlo de la siguiente manera: g++ -std=c++11 -o convertir_a_grises gray_sequential.cpp `pkg-config --cflags --libs opencv4`
 5# Si la compilación se realiza sin errores, habrá creado un archivo ejecutable llamado "convertir_a_grises"
