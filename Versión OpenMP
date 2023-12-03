@@ -1,0 +1,31 @@
+#include <opencv2/opencv.hpp>
+#include <iostream>
+#include <omp.h>
+
+
+int main() {
+    cv::Mat img = cv::imread("/home/manuel/Documentos/playa-tropical-del-paraíso-con-la-palmera-41402415.jpg");
+    if (img.empty()) {
+        std::cout << "Error al cargar la imagen" << std::endl;
+        return -1;
+    }
+
+    cv::Mat img_gray(img.rows, img.cols, CV_8UC1);
+
+    // Establecer el número de hilos a utilizar mediante OpenMP (puedes cambiar este número)
+    int num_threads = 4;
+    omp_set_num_threads(num_threads);
+
+    #pragma omp parallel for
+    for (int i = 0; i < img.rows; ++i) {
+        for (int j = 0; j < img.cols; ++j) {
+            cv::Vec3b pixel = img.at<cv::Vec3b>(i, j);
+            int gray_value = 0.2126 * pixel[2] + 0.7152 * pixel[1] + 0.0722 * pixel[0];
+            img_gray.at<uchar>(i, j) = gray_value;
+        }
+    }
+
+    cv::imwrite("/home/manuel/Documentos/imagen_gris_openmp.jpg", img_gray);
+    std::cout << "Imagen en escala de grises usando OpenMP guardada correctamente" << std::endl;
+
+    return 0;
