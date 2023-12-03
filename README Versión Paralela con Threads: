@@ -7,5 +7,6 @@
 //con makefile 
 1# copiar el codigo que esta en version paralela con threads makefile
 2# en la ruta de su archivo ponga nano Makefile y copie el codigo mencionado 
-3# para ejecutar solamente escriba ./paralelo_thread
-4# la imagen estara lista 
+3# escriba make para compilar
+4# para ejecutar solamente escriba ./paralelo_thread
+5# la imagen estara lista 
