@@ -5,3 +5,8 @@
 5# Si la compilación se realiza sin errores, habrá creado un archivo ejecutable llamado "convertir_a_grises"
 6# para ejecutarlo pone el siguiente comando ./convertir_a_grises
 7# la imagen estara guardado en Documentos (:
+//con makefile 
+1# tiene que copiar y pegar el codigo "version secuencial makefile" 
+2#tendra que poner nano Makefile y pegar el contenido de "version secuencial makefile"
+3#para mostrar la imagen en paralelo ponga ./paralelo
+4# para mostrar la imagen en secuencial ./secuencial
