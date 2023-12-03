@@ -1,13 +1,18 @@
 CC = g++
 CFLAGS = -std=c++11 -Wall -pthread
 LDFLAGS = -lopencv_core -lopencv_imgcodecs -lopencv_imgproc -lopencv_highgui
+INCLUDES = -I/usr/include/opencv4  # Ruta a los archivos de encabezado de OpenCV
+
 SOURCE = gray_thread.cpp
 PAR_THREAD_TARGET = paralelo_thread
 
-all: $(PAR_THREAD_TARGET)
-
 $(PAR_THREAD_TARGET): $(SOURCE)
-	$(CC) $(CFLAGS) -o $(PAR_THREAD_TARGET) $(SOURCE) $(LDFLAGS)
+	$(CC) $(CFLAGS) $(INCLUDES) -o $(PAR_THREAD_TARGET) \
+    		$(SOURCE) $(LDFLAGS)
+
+
 
 clean:
-	rm -f $(PAR_THREAD_TARGET) *.jpg
+	 rm -f $(PAR_THREAD_TARGET) *.jpg
+
+
