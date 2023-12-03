@@ -1,1 +1,11 @@
-PASO 1:
+1# Abre una terminal en tu sistema operativo Linux.
+2# Copia el codigo de version paralela con threads "en mi caso gray_tread.cpp" 
+3# Ubícate en la carpeta donde se encuentra el archivo gray_thread.cpp
+4# para compilar el archivo usar este codigo g++ -std=c++11 -pthread -o gray_thread gray_thread.cpp `pkg-config opencv4 --cflags --libs`
+5# ponga esto para ejecutar el codigo ./gray_thread
+6# listo! tendra la imagen guardada en documentos
+//con makefile 
+1# copiar el codigo que esta en version paralela con threads makefile
+2# en la ruta de su archivo ponga nano Makefile y copie el codigo mencionado 
+3# para ejecutar solamente escriba ./paralelo_thread
+4# la imagen estara lista 
