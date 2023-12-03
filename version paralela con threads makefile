@@ -1,7 +1,7 @@
 CC = g++
 CFLAGS = -std=c++11 -Wall -pthread
 LDFLAGS = -lopencv_core -lopencv_imgcodecs -lopencv_imgproc -lopencv_highgui
-SOURCE = main.cpp
+SOURCE = gray_thread.cpp
 PAR_THREAD_TARGET = paralelo_thread
 
 all: $(PAR_THREAD_TARGET)
