@@ -1,6 +1,7 @@
 CC = g++
-CFLAGS = -std=c++11 -Wall
-LDFLAGS = -lopencv_core -lopencv_imgcodecs -lopencv_imgproc -lopencv_highgui
+CFLAGS = -std=c++11 -Wall $(shell pkg-config --cflags opencv4)
+LDFLAGS = -L/home/manuel/test_opencv/lib
+LIBS = $(shell pkg-config --libs opencv4)
 SOURCE = gray_sequential.cpp
 SEQ_TARGET = secuencial
 PAR_TARGET = paralelo
@@ -8,10 +9,12 @@ PAR_TARGET = paralelo
 all: $(SEQ_TARGET) $(PAR_TARGET)
 
 $(SEQ_TARGET): $(SOURCE)
-	$(CC) $(CFLAGS) -o $(SEQ_TARGET) $(SOURCE) $(LDFLAGS)
+	    $(CC) $(CFLAGS) -o $(SEQ_TARGET) $(SOURCE) $(LDFLAGS) $(LIBS)
 
 $(PAR_TARGET): $(SOURCE)
-	$(CC) $(CFLAGS) -o $(PAR_TARGET) $(SOURCE) $(LDFLAGS) -fopenmp
+	    $(CC) $(CFLAGS) -o $(PAR_TARGET) $(SOURCE) $(LDFLAGS) $(LIBS) -fopenmp
 
 clean:
-	rm -f $(SEQ_TARGET) $(PAR_TARGET) *.jpg
+	    rm -f $(SEQ_TARGET) $(PAR_TARGET) *.jpg
+
+
